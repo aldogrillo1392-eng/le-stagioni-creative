@@ -75,21 +75,18 @@ export default async function HomePage() {
             </div>
           </div>
 
-          {/* Hero illustration / logo */}
-          <div className="flex justify-center animate-fade-in" aria-hidden="true">
-            <div className="relative w-72 h-72 md:w-96 md:h-96">
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-teal-200/50 to-sand-200/30 blur-2xl scale-110" />
-              <div className="relative w-full h-full rounded-full bg-white/80 shadow-brand-lg flex items-center justify-center p-8">
-                <Image
-                  src="/images/logo.png"
-                  alt="Le Stagioni Creative"
-                  fill
-                  className="object-contain p-6"
-                  priority
-                />
-              </div>
-            </div>
-          </div>
+{/* Hero logo */}
+<div className="flex justify-center animate-fade-in" aria-hidden="true">
+  <div className="relative w-56 h-56 md:w-72 md:h-72">
+    <Image
+      src="/images/logo.png"
+      alt="Le Stagioni Creative"
+      fill
+      className="object-contain drop-shadow-md"
+      priority
+    />
+  </div>
+</div>
         </div>
       </section>
 
