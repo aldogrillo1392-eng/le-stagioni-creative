@@ -1,0 +1,59 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ── Helper functions ─────────────────────────────────────────────────────
+
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      // Only the single admin user can write
+      return isAuthenticated() &&
+        request.auth.token.email_verified == true &&
+        exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+    }
+
+    // ── Products: public read, admin write ───────────────────────────────────
+    match /products/{productId} {
+      allow read:  if true;  // Public catalog is readable by everyone
+      allow create, update: if isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // ── Site settings: public read, admin write ──────────────────────────────
+    match /settings/{settingId} {
+      allow read:  if true;
+      allow write: if isAdmin();
+    }
+
+    // ── Analytics / views counter: allow increment without auth ─────────────
+    match /stats/{statId} {
+      allow read:  if true;
+      allow write: if isAdmin();
+    }
+
+    // ── Product views: allow anonymous increment ─────────────────────────────
+    match /productViews/{productId} {
+      allow read:  if true;
+      // Allow anyone to increment view count (rate-limited by client logic)
+      allow update: if request.resource.data.keys().hasOnly(['views', 'updatedAt']) &&
+                       request.resource.data.views is int &&
+                       request.resource.data.views <= resource.data.views + 1;
+      allow create: if isAdmin();
+    }
+
+    // ── Admins collection: only admins can read ──────────────────────────────
+    match /admins/{userId} {
+      allow read:  if isAdmin() || request.auth.uid == userId;
+      allow write: if false; // Managed via Firebase Console only
+    }
+
+    // ── Catch-all: deny everything else ─────────────────────────────────────
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

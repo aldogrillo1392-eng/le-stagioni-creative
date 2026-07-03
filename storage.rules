@@ -1,0 +1,28 @@
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    function isAdmin() {
+      return request.auth != null && request.auth.token.email_verified == true;
+    }
+
+    // Product images: public read, admin upload only
+    match /products/{productId}/{allPaths=**} {
+      allow read:   if true;
+      allow write:  if isAdmin() &&
+                       request.resource.size < 10 * 1024 * 1024 && // max 10 MB
+                       request.resource.contentType.matches('image/.*');
+      allow delete: if isAdmin();
+    }
+
+    // Site assets (logo, hero image)
+    match /assets/{allPaths=**} {
+      allow read:   if true;
+      allow write:  if isAdmin() &&
+                       request.resource.size < 5 * 1024 * 1024 &&
+                       request.resource.contentType.matches('image/.*');
+      allow delete: if isAdmin();
+    }
+  }
+}

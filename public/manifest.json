@@ -1,0 +1,17 @@
+{
+  "name": "Le Stagioni Creative",
+  "short_name": "Stagioni Creative",
+  "description": "Creazioni artigianali fatte con amore — sfoglia il catalogo",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FAF8F4",
+  "theme_color": "#2fa5a5",
+  "orientation": "portrait-primary",
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/icons/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ],
+  "categories": ["shopping", "lifestyle"],
+  "lang": "it"
+}

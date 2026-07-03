@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Offline — Le Stagioni Creative</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #FAF7F2;
+      color: #2D2D2D;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+    }
+    .logo {
+      width: 80px; height: 80px;
+      background: linear-gradient(135deg, #5BB8AC, #4ECDC4);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 2rem;
+      font-size: 1.5rem; color: white;
+      font-family: Georgia, serif;
+    }
+    h1 { font-family: Georgia, serif; font-size: 2rem; font-weight: 400; margin-bottom: 1rem; }
+    p { color: #5C5C5C; line-height: 1.6; margin-bottom: 2rem; }
+    a {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: #5BB8AC; color: white; padding: 0.75rem 1.5rem;
+      border-radius: 12px; text-decoration: none; font-size: 0.875rem;
+    }
+    a:hover { background: #4a9d92; }
+  </style>
+</head>
+<body>
+  <div class="logo">LSC</div>
+  <h1>Sei offline</h1>
+  <p>
+    Non è possibile connettersi a Le Stagioni Creative in questo momento.<br />
+    Controlla la tua connessione e riprova.
+  </p>
+  <a href="/" onclick="window.location.reload()">
+    ↻ Riprova
+  </a>
+</body>
+</html>
