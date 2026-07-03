@@ -131,7 +131,7 @@ export function ProductForm({ product, onSuccess }: ProductFormProps) {
   // ── Field helpers ─────────────────────────────────────────────────────────
 
   const field = (key: keyof ProductFormData) => ({
-    value:    form[key] as string | number,
+    value:    String(form[key] as string | number),
     onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
       const value = e.target.type === 'checkbox'
         ? (e.target as HTMLInputElement).checked
