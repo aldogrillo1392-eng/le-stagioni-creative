@@ -108,21 +108,28 @@ export function ProductForm({ product, onSuccess }: ProductFormProps) {
 
     setSaving(true)
     const toastId = toast.loading(isEdit ? 'Salvataggio…' : 'Creazione…')
+    const timeout = new Promise<never>((_, reject) =>
+      setTimeout(() => reject(new Error('Tempo scaduto: Firestore non ha risposto entro 20s. Controlla le regole di sicurezza (email verificata?) o la connessione.')), 20000)
+    )
     try {
       const mainImage = images[0]?.url ?? ''
 
       if (isEdit && product) {
-        await updateProduct(product.id, { ...form, images, mainImage })
+        await Promise.race([updateProduct(product.id, { ...form, images, mainImage }), timeout])
         toast.success('Prodotto aggiornato!', { id: toastId })
         onSuccess(product.id)
       } else {
         const slug = toSlug(form.name)
-        const id   = await createProduct(form, images.map((img, i) => ({ ...img, order: i })), slug)
+        const id   = await Promise.race([
+          createProduct(form, images.map((img, i) => ({ ...img, order: i })), slug),
+          timeout,
+        ])
         toast.success('Prodotto creato!', { id: toastId })
         onSuccess(id)
       }
-    } catch {
-      toast.error('Errore nel salvataggio', { id: toastId })
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Errore sconosciuto'
+      toast.error(`Errore nel salvataggio: ${message}`, { id: toastId, duration: 8000 })
     } finally {
       setSaving(false)
     }
