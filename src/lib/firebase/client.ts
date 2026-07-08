@@ -34,11 +34,10 @@ export function getFirebaseAuth(): Auth {
 }
 
 export function getFirebaseDb(): Firestore {
-  // Auto-detected long-polling wasn't enough on some networks (router/ISP
-  // firewalls that kill long-lived streams): force long-polling outright.
-  if (!db) db = initializeFirestore(getFirebaseApp(), {
-    experimentalForceLongPolling: true,
-  })
+  // This project's Firestore database was created with the custom ID
+  // "default" instead of the reserved "(default)" that getFirestore()
+  // assumes, so it must be targeted explicitly here.
+  if (!db) db = initializeFirestore(getFirebaseApp(), {}, 'default')
   return db
 }
 
