@@ -1,6 +1,6 @@
 import { initializeApp, getApps, type FirebaseApp } from 'firebase/app'
 import { getAuth, type Auth } from 'firebase/auth'
-import { getFirestore, type Firestore } from 'firebase/firestore'
+import { initializeFirestore, type Firestore } from 'firebase/firestore'
 import { getStorage, type FirebaseStorage } from 'firebase/storage'
 import { getAnalytics, type Analytics } from 'firebase/analytics'
 
@@ -34,7 +34,10 @@ export function getFirebaseAuth(): Auth {
 }
 
 export function getFirebaseDb(): Firestore {
-  if (!db) db = getFirestore(getFirebaseApp())
+  // experimentalAutoDetectLongPolling: falls back to HTTP long-polling when
+  // WebChannel streaming is blocked by restrictive networks/proxies, which
+  // otherwise causes reads/writes to hang indefinitely with no error.
+  if (!db) db = initializeFirestore(getFirebaseApp(), { experimentalAutoDetectLongPolling: true })
   return db
 }
 
