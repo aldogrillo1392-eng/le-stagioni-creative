@@ -34,10 +34,11 @@ export function getFirebaseAuth(): Auth {
 }
 
 export function getFirebaseDb(): Firestore {
-  // experimentalAutoDetectLongPolling: falls back to HTTP long-polling when
-  // WebChannel streaming is blocked by restrictive networks/proxies, which
-  // otherwise causes reads/writes to hang indefinitely with no error.
-  if (!db) db = initializeFirestore(getFirebaseApp(), { experimentalAutoDetectLongPolling: true })
+  // Auto-detected long-polling wasn't enough on some networks (router/ISP
+  // firewalls that kill long-lived streams): force long-polling outright.
+  if (!db) db = initializeFirestore(getFirebaseApp(), {
+    experimentalForceLongPolling: true,
+  })
   return db
 }
 
