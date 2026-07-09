@@ -72,15 +72,10 @@ export function Header() {
 
           <Link
             href="/admin"
-            className={cn(
-              'hidden sm:inline-flex items-center gap-2',
-              'border border-gray-200 text-gray-600',
-              'px-4 py-2 rounded-2xl text-sm font-medium',
-              'hover:text-teal-600 hover:bg-teal-50 hover:border-teal-200 transition-colors'
-            )}
+            className="p-2 rounded-xl text-gray-500 hover:text-teal-600 hover:bg-teal-50 transition-colors"
+            aria-label="Area admin"
           >
-            <Lock size={16} />
-            Admin
+            <Lock size={20} />
           </Link>
 
           <Link
