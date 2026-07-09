@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { ShoppingBag, Instagram, Menu, X } from 'lucide-react'
+import { ShoppingBag, Instagram, Menu, X, Lock } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const NAV_LINKS = [
@@ -69,6 +69,19 @@ export function Header() {
           >
             <Instagram size={20} />
           </a>
+
+          <Link
+            href="/admin"
+            className={cn(
+              'hidden sm:inline-flex items-center gap-2',
+              'border border-gray-200 text-gray-600',
+              'px-4 py-2 rounded-2xl text-sm font-medium',
+              'hover:text-teal-600 hover:bg-teal-50 hover:border-teal-200 transition-colors'
+            )}
+          >
+            <Lock size={16} />
+            Admin
+          </Link>
 
           <Link
             href="/catalogo"
