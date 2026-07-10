@@ -50,7 +50,7 @@ export function Footer() {
                 @jmlestagionicreative13
               </a>
               <a
-                href="https://www.vinted.it/member/lestagionicreative"
+                href="https://www.vinted.it/member/281391273-lestagionicreative"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-sm text-gray-400 hover:text-teal-400 transition-colors"
