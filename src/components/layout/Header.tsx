@@ -11,6 +11,14 @@ const NAV_LINKS = [
   { href: '/catalogo',  label: 'Catalogo' },
 ]
 
+function VintedIcon({ size = 20 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M3 4h5.2l3.3 8.2L14.8 4H20l-6.9 16h-4.2z" />
+    </svg>
+  )
+}
+
 export function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [open,     setOpen]     = useState(false)
@@ -60,6 +68,16 @@ export function Header() {
 
         {/* Actions */}
         <div className="flex items-center gap-2">
+          <a
+            href="https://www.vinted.it/member/281391273-lestagionicreative"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2 rounded-xl text-gray-500 hover:text-teal-600 hover:bg-teal-50 transition-colors"
+            aria-label="Il nostro negozio su Vinted"
+          >
+            <VintedIcon size={20} />
+          </a>
+
           <a
             href="https://www.instagram.com/jmlestagionicreative13"
             target="_blank"
