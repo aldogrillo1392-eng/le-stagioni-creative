@@ -11,7 +11,7 @@ export const DEFAULT_SETTINGS: SiteSettings = {
   heroSubtitle:     'Oggetti unici realizzati a mano, per rendere speciale ogni momento',
   instagramHandle:  '@jmlestagionicreative13',
   instagramUrl:     'https://www.instagram.com/jmlestagionicreative13',
-  vintedProfileUrl: 'https://www.vinted.it/member/lestagionicreative',
+  vintedProfileUrl: 'https://www.vinted.it/member/281391273-lestagionicreative',
   adminEmail:       '',
   logoUrl:          '/images/logo.png',
   heroBgUrl:        '',
