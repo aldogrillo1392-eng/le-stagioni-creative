@@ -128,9 +128,11 @@ export function ProductDetail({ product }: ProductDetailProps) {
             {product.name}
           </h1>
 
-          <div className="font-display text-4xl font-semibold text-teal-600">
-            {formatPrice(product.price)}
-          </div>
+                   {product.price > 0 && (
+            <div className="font-display text-4xl font-semibold text-teal-600">
+              {formatPrice(product.price)}
+            </div>
+          )}
 
           {/* Status badge */}
           <div className="flex items-center gap-2">
