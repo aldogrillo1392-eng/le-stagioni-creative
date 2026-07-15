@@ -69,10 +69,12 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
           {product.description}
         </p>
 
-        <div className="flex items-center justify-between mt-auto pt-2">
-          <span className="font-display text-xl font-semibold text-gray-900">
-            {formatPrice(product.price)}
-          </span>
+                <div className="flex items-center justify-between mt-auto pt-2">
+          {product.price > 0 && (
+            <span className="font-display text-xl font-semibold text-gray-900">
+              {formatPrice(product.price)}
+            </span>
+          )}
 
           {!isSold && product.vintedUrl && (
             <a
