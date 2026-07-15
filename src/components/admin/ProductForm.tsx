@@ -91,7 +91,7 @@ export function ProductForm({ product, onSuccess }: ProductFormProps) {
     const errs: typeof errors = {}
     if (!form.name.trim())         errs.name = 'Il nome è obbligatorio'
     if (!form.description.trim())  errs.description = 'La descrizione è obbligatoria'
-    if (form.price <= 0)           errs.price = 'Il prezzo deve essere maggiore di 0'
+    if (form.price < 0)            errs.price = 'Il prezzo non può essere negativo'
     setErrors(errs)
     return Object.keys(errs).length === 0
   }
